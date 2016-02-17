@@ -1,0 +1,48 @@
+body {
+  background: black;
+  padding: 1em;
+  font-family: 'Oswald', sans-serif;
+}
+
+$red: #D92E2D;
+$green: #12DEBD;
+
+button {
+  background: black;
+  border: 2px solid white;
+  border-radius: 2px;
+  color: white;
+  text-transform: uppercase;
+  padding: 0.2em 0.8em;
+  margin: 0.5em;
+
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &.safe {
+    border-color: $green;
+    color: lighten($green, 30);
+  }
+
+  &.safe.active {
+    border-color: $green;
+    background: $green;
+    color: black;
+  }
+
+  &.warning {
+    border-color: $red;
+    color: lighten($red, 30);
+  }
+
+  &.warning.active {
+    border-color: $red;
+    background: $red;
+    color: black;
+  }
+}
