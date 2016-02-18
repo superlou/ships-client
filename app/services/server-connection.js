@@ -2,6 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Service.extend({
   socketService: Ember.inject.service('websockets'),
+  store: Ember.inject.service('store'),
+
   url: 'ws://localhost:8081',
   isConnected: false,
   socket: undefined,
@@ -18,6 +20,8 @@ export default Ember.Service.extend({
       }, 1000);
     });
 
+    socket.on('message', this.onMessage.bind(this));
+
     return new Ember.RSVP.Promise((resolve, reject) => {
       socket.on('open', (event) => {
         this.set('isConnected', true);
@@ -32,7 +36,18 @@ export default Ember.Service.extend({
         cmd: 'subscribe',
         ship_id: ship_id,
         console_id: console_id
-      }, true);      
+      }, true);
     });
+  },
+
+  onMessage: function(msg) {
+    var data = JSON.parse(msg.data);
+    console.log(msg);
+
+    if (data.response_type == 'console_config') {
+      var model = this.get('store').peekRecord('console', data.console_id);
+      model.set('controls', data.controls);
+    }
+    console.log(data)
   }
 });

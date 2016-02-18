@@ -8,6 +8,21 @@ body {
 $red: #D92E2D;
 $green: #12DEBD;
 
+.control-labeled-data {
+  font-size: 24px;
+  text-align: center;
+  display: inline-block;
+  margin: 0.5em;
+
+  .label {
+    font-weight: 300;
+    font-size: 0.6em;
+  }
+
+  .value {
+  }
+}
+
 button {
   background: black;
   border: 2px solid white;
