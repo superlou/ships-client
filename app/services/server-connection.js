@@ -42,12 +42,13 @@ export default Ember.Service.extend({
 
   onMessage: function(msg) {
     var data = JSON.parse(msg.data);
-    console.log(msg);
 
     if (data.response_type == 'console_config') {
       var model = this.get('store').peekRecord('console', data.console_id);
       model.set('controls', data.controls);
+    } else if (data.response_type == 'data_update') {
+      var model = this.get('store').peekRecord('console', data.console_id);
+      model.set('consoleData', data.console_data);
     }
-    console.log(data)
   }
 });

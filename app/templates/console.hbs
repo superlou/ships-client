@@ -1,3 +1,5 @@
 {{#each model.controls as |control|}}
-  {{component control.type config=control}}
+  {{component control.type
+              config=control
+              data=model.consoleData}}
 {{/each}}
