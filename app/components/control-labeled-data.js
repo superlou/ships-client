@@ -5,7 +5,10 @@ export default Ember.Component.extend({
 
   value: Ember.computed('config', 'data', function() {
     if (this.get('config.bind')) {
-      return this.get('data.' + this.get('config.bind'));
+      var value = this.get('data.' + this.get('config.bind'));
+      if (value !== undefined) {
+        return value;
+      }
     }
 
     return '-';
