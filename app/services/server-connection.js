@@ -50,5 +50,12 @@ export default Ember.Service.extend({
       var model = this.get('store').peekRecord('console', data.console_id);
       model.set('consoleData', data.console_data);
     }
+  },
+
+  command: function(data) {
+    this.get('socket').send({
+      cmd: 'command',
+      data: data
+    }, true);
   }
 });
