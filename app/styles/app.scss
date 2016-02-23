@@ -25,14 +25,15 @@ $green: #12DEBD;
   }
 }
 
-button {
-  background: black;
+button.control-button {
+  background: none;
   border: 2px solid white;
   border-radius: 2px;
   color: white;
   text-transform: uppercase;
-  padding: 0.2em 0.8em;
-  margin: 0.5em;
+  padding: 0.4em 0.8em;
+  margin: 0 0.4em;
+  display: inline-block;
 
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
