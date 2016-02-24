@@ -46,12 +46,18 @@ button.control-button {
     outline: none;
   }
 
+  &.is-active {
+    border-color: white;
+    background: white;
+    color: black;
+  }
+
   &.safe {
     border-color: $green;
     color: lighten($green, 30);
   }
 
-  &.safe.active {
+  &.safe.is-active {
     border-color: $green;
     background: $green;
     color: black;
@@ -62,7 +68,7 @@ button.control-button {
     color: lighten($red, 30);
   }
 
-  &.warning.active {
+  &.warning.is-active {
     border-color: $red;
     background: $red;
     color: black;
