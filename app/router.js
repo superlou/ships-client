@@ -6,7 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('ship');
+  this.route('ship', {path: 'ship/:ship_code'});
   this.route('console', {path: 'ship/:ship_id/console/:console_id'});
 });
 

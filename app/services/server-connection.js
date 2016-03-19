@@ -42,6 +42,7 @@ export default Ember.Service.extend({
 
   onMessage: function(msg) {
     var data = JSON.parse(msg.data);
+    console.log(data);
 
     if (data.response_type == 'console_config') {
       var model = this.get('store').peekRecord('console', data.console_id);
@@ -49,6 +50,8 @@ export default Ember.Service.extend({
     } else if (data.response_type == 'data_update') {
       var model = this.get('store').peekRecord('console', data.console_id);
       model.set('consoleData', data.console_data);
+    } else if (data.consoleBriefs) {
+      this.get('store').pushPayload(data);
     }
   },
 
@@ -56,6 +59,13 @@ export default Ember.Service.extend({
     this.get('socket').send({
       cmd: 'command',
       data: data
+    }, true);
+  },
+
+  joinShip: function(shipCode) {
+    this.get('socket').send({
+      cmd: 'joinShip',
+      shipCode: shipCode
     }, true);
   }
 });
