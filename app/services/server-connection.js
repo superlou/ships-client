@@ -41,7 +41,8 @@ export default Ember.Service.extend({
 
   onMessage: function(msg) {
     var data = JSON.parse(msg.data);
-    console.log(data);
+    // console.log(data);
+    console.log(data)
 
     if (data.terminalBriefs) {
       this.get('store').pushPayload(data);
@@ -49,7 +50,7 @@ export default Ember.Service.extend({
       this.get('store').pushPayload(data);
     } else if (data.terminal_update) {
       var model = this.get('store').peekRecord('terminal', data.terminal_update.id);
-      model.set('terminalData', data.terminal_update.terminal_update);
+      model.set('terminalData', data.terminal_update.terminal_data);
     }
   },
 
