@@ -30,12 +30,11 @@ export default Ember.Service.extend({
     });
   },
 
-  subscribe: function(ship_id, console_id) {
+  subscribe: function(terminal_id) {
     return new Ember.RSVP.Promise((resolve, reject) => {
       this.get('socket').send({
         cmd: 'subscribe',
-        ship_id: ship_id,
-        console_id: console_id
+        terminal_id: terminal_id
       }, true);
     });
   },
@@ -44,13 +43,12 @@ export default Ember.Service.extend({
     var data = JSON.parse(msg.data);
     console.log(data);
 
-    if (data.response_type == 'console_config') {
-      var model = this.get('store').peekRecord('console', data.console_id);
-      model.set('controls', data.controls);
-    } else if (data.response_type == 'data_update') {
-      var model = this.get('store').peekRecord('console', data.console_id);
-      model.set('consoleData', data.console_data);
-    } else if (data.consoleBriefs) {
+    if (data.response_type == 'data_update') {
+      var model = this.get('store').peekRecord('terminal', data.console_id);
+      model.set('terminalData', data.console_data);
+    } else if (data.terminalBriefs) {
+      this.get('store').pushPayload(data);
+    } else if (data.terminal) {
       this.get('store').pushPayload(data);
     }
   },

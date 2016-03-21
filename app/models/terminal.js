@@ -1,7 +1,8 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  ship: DS.belongsTo('ship'),
+  name: DS.attr(),
+  shipId: DS.attr(),
   controls: DS.attr(),
-  consoleData: DS.attr()
+  terminalData: DS.attr()
 });
