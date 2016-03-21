@@ -9,6 +9,10 @@ body {
   color: white;
 }
 
+a, a:visited, a:hover, a:active {
+  color: white;
+}
+
 $red: #D92E2D;
 $green: #12DEBD;
 
@@ -73,4 +77,13 @@ button.control-button {
     background: $red;
     color: black;
   }
+}
+
+input {
+  background: black;
+  color: white;
+  border: 2px solid white;
+  border-radius: 2px;
+  font-size: 18px;
+  padding: 0.4em;
 }
