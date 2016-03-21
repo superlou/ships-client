@@ -43,13 +43,13 @@ export default Ember.Service.extend({
     var data = JSON.parse(msg.data);
     console.log(data);
 
-    if (data.response_type == 'data_update') {
-      var model = this.get('store').peekRecord('terminal', data.console_id);
-      model.set('terminalData', data.console_data);
-    } else if (data.terminalBriefs) {
+    if (data.terminalBriefs) {
       this.get('store').pushPayload(data);
     } else if (data.terminal) {
       this.get('store').pushPayload(data);
+    } else if (data.terminal_update) {
+      var model = this.get('store').peekRecord('terminal', data.terminal_update.id);
+      model.set('terminalData', data.terminal_update.terminal_update);
     }
   },
 

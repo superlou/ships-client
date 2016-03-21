@@ -1,7 +1,7 @@
 {{#each model.controls as |control|}}
   {{component control.type
               config=control
-              data=model.consoleData
+              data=model.terminalData
               cmd='cmd'
   }}
 {{/each}}
